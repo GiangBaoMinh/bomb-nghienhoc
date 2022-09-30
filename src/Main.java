@@ -12,5 +12,6 @@ public class Main extends Application {
         theStage.setTitle("Bomb");
         Button button = new Button();
         theStage.show();
+        System.out.println("commit");
     }
 }
