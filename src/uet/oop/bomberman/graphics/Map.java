@@ -1,11 +1,10 @@
-package uet.oop.bomberman;
+package uet.oop.bomberman.graphics;
 
 import javafx.scene.Scene;
-import uet.oop.bomberman.entities.Brick;
+import uet.oop.bomberman.entities.block.Brick;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.entities.block.Grass;
+import uet.oop.bomberman.entities.block.Wall;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -32,7 +31,7 @@ public class Map {
     public List<Entity> cells = new ArrayList<>();
     public List<Entity> bombs = new ArrayList<>();
 
-    Map(Scene scene, int level) {
+    public Map(Scene scene, int level) {
         this.scene = scene;
         loadLevel(level);
     }
@@ -54,7 +53,6 @@ public class Map {
                         object = new Grass(j, i, Sprite.grass.getFxImage());
                     }
                     cells.add(object);
-                    bombs.add(bomb);
                 }
             }
             for (int i = 0; i < 13; i++) {

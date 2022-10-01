@@ -1,12 +1,15 @@
-package uet.oop.bomberman.entities;
+package uet.oop.bomberman.entities.animal;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.block.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.graphics.SpriteSheet;
 
-public class Bomber extends Entity {
+public class Bomber extends Animal {
     Scene scene = null;
+    public Bomb bomb = null;
     public int WIDTH = 31;
     public int HEIGHT = 13;
     public boolean up = false;
@@ -14,7 +17,7 @@ public class Bomber extends Entity {
     public boolean right = false;
     public boolean left = false;
     public boolean space = false;
-    public int speed = 16;
+    public int speed = 10;
     public boolean moving = false;
     public Sprite[] playerAnimUp, playerAnimDown, playerAnimRight, playerAnimLeft, bombAnimation;
     public int indexOfMove = 0;
@@ -51,8 +54,9 @@ public class Bomber extends Entity {
                     handleMove();
                     break;
                 case SPACE:
-                    setBomb();
-                    System.out.println("Space");
+                    if (bomb == null) {
+                        bomb = new Bomb(this.x, this.y, Sprite.bomb.getFxImage());
+                    }
                     break;
             }
         });
@@ -114,28 +118,6 @@ public class Bomber extends Entity {
     }
 
 
-    public void setBomb() {
-        bombAnimation();
-        if (bombCount >= 1) {
-            indexOfBomb++;
-            if (indexOfBomb > 2) {
-                indexOfBomb = 0;
-            }
-            if (this.space) {
-                Bomb bomb = new Bomb(this.x, this.y, bombAnimation[0].getFxImage());
-                bomb.img = bombAnimation[indexOfBomb].getFxImage();
-                bombCount--;
-            }
-            bombCount++;
-        }
-    }
-
-    public void bombAnimation() {
-        bombAnimation = new Sprite[3];
-        for (int i = 0; i <= 2; i++) {
-            bombAnimation[i] = new Sprite(Sprite.DEFAULT_SIZE, i, 3, SpriteSheet.tiles, 15, 15);
-        }
-    }
 
     public boolean checkWall() {
         if (this.y == 0 || this.y == HEIGHT - 1 || this.x == 0 || this.x == WIDTH - 1
