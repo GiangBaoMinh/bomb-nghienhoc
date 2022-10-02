@@ -10,7 +10,8 @@ import static uet.oop.bomberman.BombermanGame.player;
 public class Bomb extends Entity {
     public static int numberOfBomb = 1;
     public static int explosion = 0;
-    public static int swapAnimation = 1;
+    public static int swapAnimationBomb = 1;
+    public static int swapAnimationExplosion = 1;
     public static long timeCurrent;
     public static long timeTemp;
     public static Entity bomb;
@@ -35,23 +36,32 @@ public class Bomb extends Entity {
     }
 
     public static void handleAnimationPutBomb() {
-        if (swapAnimation == 1) {
+        if (swapAnimationBomb == 1) {
             bomb.setImg(Sprite.bomb.getFxImage());
-            swapAnimation = 2;
-        } else if (swapAnimation == 2) {
+            swapAnimationBomb = 2;
+        } else if (swapAnimationBomb == 2) {
             bomb.setImg(Sprite.bomb_1.getFxImage());
-            swapAnimation = 3;
-        } else if (swapAnimation == 3) {
+            swapAnimationBomb = 3;
+        } else if (swapAnimationBomb == 3) {
             bomb.setImg(Sprite.bomb.getFxImage());
-            swapAnimation = 4;
-        } else if (swapAnimation == 4) {
+            swapAnimationBomb = 4;
+        } else if (swapAnimationBomb == 4) {
             bomb.setImg(Sprite.bomb_2.getFxImage());
-            swapAnimation = 1;
+            swapAnimationBomb = 1;
         }
     }
 
     public static void handleAnimationExplosion() {
-        bomb.setImg(Sprite.bomb_exploded.getFxImage());
+        if (swapAnimationExplosion == 1) {
+            bomb.setImg(Sprite.bomb_exploded.getFxImage());
+            swapAnimationExplosion = 2;
+        } else if (swapAnimationExplosion == 2) {
+            bomb.setImg(Sprite.bomb_exploded1.getFxImage());
+            swapAnimationExplosion = 3;
+        } else if (swapAnimationExplosion == 3) {
+            bomb.setImg(Sprite.bomb_exploded2.getFxImage());
+            swapAnimationExplosion = 0;
+        }
     }
 
     public static void timeAnimationPutBomb() {
