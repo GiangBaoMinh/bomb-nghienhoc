@@ -32,6 +32,8 @@ public class BombermanGame extends Application {
     Group root = new Group();
     Scene scene = new Scene(root);
 
+    public static char[][] tileMap;
+
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }

@@ -3,11 +3,12 @@ package uet.oop.bomberman.control;
 import uet.oop.bomberman.entities.animal.Animal;
 import uet.oop.bomberman.entities.animal.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.control.Blocked;
 
 public class Move {
     public static void checkRun(Animal animal) {
         if (animal instanceof Bomber && animal.getCount() > 0) {
-            setDirection(animal.getDirection(), animal, 6);
+            setDirection(animal.getDirection(), animal, 1);
             animal.setCount(animal.getCount() - 1);
         }
     }
@@ -38,10 +39,13 @@ public class Move {
             animal.setDirection("down");
             animal.setCount(4);
         }
+        else{
+            System.out.println("Block down!");
+        }
     }
 
     private static void moveAnimationDown(Animal animal) {
-        if (animal instanceof Bomber) {
+        if (animal instanceof Bomber && Blocked.checkBottom(animal)) {
             if (animal.getSwap() == 1) {
                 animal.setImg(Sprite.player_down.getFxImage());
                 animal.setSwap(2);
@@ -59,9 +63,12 @@ public class Move {
     }
 
     public static void up(Animal animal) {
-        if (animal instanceof Bomber) {
+        if (animal instanceof Bomber && Blocked.checkUp(animal)) {
             animal.setDirection("up");
             animal.setCount(4);
+        }
+        else{
+            System.out.println("Block up!");
         }
     }
 
@@ -84,9 +91,12 @@ public class Move {
     }
 
     public static void left(Animal animal) {
-        if (animal instanceof Bomber) {
+        if (animal instanceof Bomber && Blocked.checkLeft(animal)) {
             animal.setDirection("left");
             animal.setCount(4);
+        }
+        else{
+            System.out.println("Block left!");
         }
     }
 
@@ -109,9 +119,13 @@ public class Move {
     }
 
     public static void right(Animal animal) {
-        if (animal instanceof Bomber) {
+        if (animal instanceof Bomber && Blocked.checkRight(animal)) {
             animal.setDirection("right");
             animal.setCount(4);
+        }
+
+        else{
+            System.out.println("Block right!");
         }
     }
 
