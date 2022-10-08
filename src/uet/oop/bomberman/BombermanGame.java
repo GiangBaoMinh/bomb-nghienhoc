@@ -28,7 +28,7 @@ public class BombermanGame extends Application {
     private Canvas canvas;
     public static List<Entity> entities = new ArrayList<>();
     public static final List<Entity> blocks = new ArrayList<>();
-    public static Animal player;
+    public static Bomber player;
     Group root = new Group();
     Scene scene = new Scene(root);
 
